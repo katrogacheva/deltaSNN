@@ -145,6 +145,7 @@ def reset(net):
     from the current computation graph."""
 
     global is_alpha
+    global is_deltaleaky
     global is_leaky
     global is_lapicque
     global is_rleaky
@@ -154,6 +155,7 @@ def reset(net):
     global is_slstm
 
     is_alpha = False
+    is_deltaleaky = False
     is_leaky = False
     is_rleaky = False
     is_synaptic = False
@@ -171,6 +173,7 @@ def _layer_check(net):
     """Check for the types of LIF neurons contained in net."""
 
     global is_leaky
+    global is_deltaleaky
     global is_lapicque
     global is_synaptic
     global is_alpha
@@ -196,6 +199,8 @@ def _layer_check(net):
             is_sconv2dlstm = True
         if isinstance(list(net._modules.values())[idx], snn.SLSTM):
             is_slstm = True
+        if isinstance(list(net._modules.values())[idx], snn.deltaLeaky):
+            is_deltaleaky = True
 
 
 def _layer_reset():
@@ -226,6 +231,9 @@ def _layer_reset():
     if is_slstm:
         snn.SLSTM.reset_hidden()  # reset hidden state to 0's
         snn.SLSTM.detach_hidden()
+    if is_deltaleaky:
+        snn.deltaLeaky.reset_hidden()  # reset hidden state to 0's
+        snn.deltaLeaky.detach_hidden()
 
 
 def _final_layer_check(net):
@@ -247,5 +255,7 @@ def _final_layer_check(net):
         return 3
     if isinstance(list(net._modules.values())[-1], snn.Alpha):
         return 4
+    if isinstance(list(net._modules.values())[-1], snn.deltaLeaky):
+        return 2
     else:  # if not from snn, assume from nn with 1 return
         return 1

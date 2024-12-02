@@ -22,4 +22,5 @@ def test_instances():
     snn.SpikingNeuron.instances = []
     snn.Synaptic(alpha=0.5, beta=0.5)
     snn.Alpha(alpha=0.5, beta=0.4)
+    # Add test for delta RNN nueron
     assert len(snn.SpikingNeuron.instances) == 2
