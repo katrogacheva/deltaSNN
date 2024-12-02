@@ -185,6 +185,7 @@ class Leaky(LIF):
         mem = torch.zeros(0)
         self.register_buffer("mem", mem, False)
 
+
     def reset_mem(self):
         self.mem = torch.zeros_like(self.mem, device=self.mem.device)
         return self.mem
