@@ -31,7 +31,7 @@ class SpikingNeuron(nn.Module):
     def __init__(
         self,
         threshold=1.0,
-        delta_threshold=10.0,
+        #delta_threshold=10.0,
         spike_grad=None,
         surrogate_disable=False,
         init_hidden=False,
@@ -85,12 +85,12 @@ class SpikingNeuron(nn.Module):
 
         return spk
     
-    def delta_fire(self, mem, prev_mem):
+    def delta_fire(self, mem, prev_mem, delta_threshold):
         if self.state_quant:
             mem = self.state_quant(mem)
 
         # memshift = mem - prev_mem
-        mem_shift = (mem - prev_mem) - self.delta_threshold
+        mem_shift = (mem - prev_mem) - delta_threshold
         # spk if change > delta_threshold
         # atan(memshift)
         spk = self.spike_grad(mem_shift)

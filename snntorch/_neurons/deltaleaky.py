@@ -7,6 +7,7 @@ class deltaLeaky(LIF):
     def __init__(
         self,
         beta,
+        delta_threshold=10.0,
         spike_grad=None,
         surrogate_disable=False,
         init_hidden=False,
@@ -28,7 +29,7 @@ class deltaLeaky(LIF):
             inhibition,
             learn_beta,
             learn_threshold,
-            reset_mechanism,
+            #reset_mechanism,
             state_quant,
             output,
             graded_spikes_factor,
@@ -54,7 +55,7 @@ class deltaLeaky(LIF):
         
     def _init_prevmem(self):
         prevmem = torch.zeros(0)
-        self.register_buffer("mem", prevmem, False)
+        self.register_buffer("prevmem", prevmem, False)
 
     def reset_mem(self):
         self.mem = torch.zeros_like(self.mem, device=self.mem.device)
@@ -95,7 +96,7 @@ class deltaLeaky(LIF):
                 self.mem.size(0), self.mem
             )  # batch_size
         else:
-            spk = self.delta_fire(self.mem, self.prevmem)
+            spk = self.delta_fire(self.mem, self.prevmem, self.delta_threshold)
 
         if not self.reset_delay:
             do_reset = (
