@@ -22,18 +22,18 @@ class deltaLeaky(LIF):
         reset_delay=True,
     ):
         super().__init__(
-            beta,
-            spike_grad,
-            surrogate_disable,
-            init_hidden,
-            inhibition,
-            learn_beta,
-            learn_threshold,
-            reset_mechanism,
-            state_quant,
-            output,
-            graded_spikes_factor,
-            learn_graded_spikes_factor,
+            beta=beta,
+            spike_grad=spike_grad,
+            surrogate_disable=surrogate_disable,
+            init_hidden=init_hidden,
+            inhibition=inhibition,
+            learn_beta=learn_beta,
+            learn_threshold=learn_threshold,
+            reset_mechanism=reset_mechanism,
+            state_quant=state_quant,
+            output=output,
+            graded_spikes_factor=graded_spikes_factor,
+            learn_graded_spikes_factor=learn_graded_spikes_factor,
         )
 
         self._init_mem()
