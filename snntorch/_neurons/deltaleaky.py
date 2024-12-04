@@ -7,6 +7,7 @@ class deltaLeaky(LIF):
     def __init__(
         self,
         beta,
+        threshold=1.0,
         delta_threshold=10.0,
         spike_grad=None,
         surrogate_disable=False,
@@ -47,6 +48,7 @@ class deltaLeaky(LIF):
             self.state_function = self._base_int
 
         self.reset_delay = reset_delay
+        self.delta_threshold = delta_threshold
 
     def _init_mem(self):
         mem = torch.zeros(0)
