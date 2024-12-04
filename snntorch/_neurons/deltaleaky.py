@@ -7,7 +7,7 @@ class deltaLeaky(LIF):
     def __init__(
         self,
         beta,
-        deltathreshold=10.0,
+        delta_threshold=10.0,
         spike_grad=None,
         surrogate_disable=False,
         init_hidden=False,
@@ -23,7 +23,7 @@ class deltaLeaky(LIF):
     ):
         super().__init__(
             beta,
-            deltathreshold,
+            delta_threshold,
             spike_grad,
             surrogate_disable,
             init_hidden,
