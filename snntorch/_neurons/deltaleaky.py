@@ -45,6 +45,7 @@ class deltaLeaky(LIF):
         elif self.reset_mechanism_val == 2:  # no reset, pure integration
             self.state_function = self._base_int
 
+        self._reset_mechanism = reset_mechanism
         self.reset_delay = reset_delay
 
     def _init_mem(self):
