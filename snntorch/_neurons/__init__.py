@@ -24,9 +24,11 @@ __neuron__ = [
 from .neurons import SpikingNeuron
 from .neurons import LIF
 from .alpha import Alpha
-from .deltaleaky import deltaLeaky
 from .lapicque import Lapicque
 from .leaky import Leaky
+print("Leaky imported successfully!")
+from .deltaleaky import deltaLeaky
+print("deltaLeaky imported successfully!")
 from .synaptic import Synaptic
 
 from .rleaky import RLeaky
