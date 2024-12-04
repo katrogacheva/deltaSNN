@@ -96,7 +96,7 @@ class deltaLeaky(LIF):
                 self.mem.size(0), self.mem
             )  # batch_size
         else:
-            spk = self.delta_fire(self.mem, self.memprev)
+            spk = self.delta_fire(self.mem, self.prevmem)
 
         if not self.reset_delay:
             do_reset = (
