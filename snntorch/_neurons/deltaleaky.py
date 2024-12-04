@@ -29,7 +29,7 @@ class deltaLeaky(LIF):
             inhibition,
             learn_beta,
             learn_threshold,
-            #reset_mechanism,
+            reset_mechanism,
             state_quant,
             output,
             graded_spikes_factor,
