@@ -31,6 +31,7 @@ class SpikingNeuron(nn.Module):
     def __init__(
         self,
         threshold=1.0,
+        delta_threshold=10.0,
         spike_grad=None,
         surrogate_disable=False,
         init_hidden=False,
